@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bob's burgers hiring joint</title>
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <style type="text/css">
+
+            .search-style{
+                font-size:30px; 
+                margin-top:15px; 
+                background-color:cadetblue; 
+                padding:15px;
+            }
+
+            .cat-img-style{
+                max-width:20%; 
+                max-height:150px; 
+                margin:10px; 
+                float:left;
+            }
+
+            .save-style{
+                font-size:30px; 
+                margin-top:15px; 
+                background-color:bisque; 
+                padding:15px;
+            }
+
+            .load-style{
+                font-size:30px;
+                margin-top:15px; 
+                background-color: wheat; 
+                padding:15px;
+            }
+
+
+        </style>
+
+
+    </head>
+    <body>
+
+        <!-- nav bar --><!-- nav bar --><!-- nav bar --><!-- nav bar --><!-- nav bar --><!-- nav bar -->
+        <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="container">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- jumbotron --><!-- jumbotron --><!-- jumbotron --><!-- jumbotron --><!-- jumbotron -->
+
+        <div class="jumbotron" style="padding-bottom:10px; margin-bottom: 10px;">
+            <div class="container" style="text-align:center;">
+                <h1>Bob's burgers hiring join</h1>
+                <p>Vet your people before they wreck your business</p>
+            </div>
+        </div>
+
+        <div class="container">
+          <!-- Example row of columns -->
+            <div class="row" style="text-align:center; font-size:30px; padding:15px;">
+                <br>
+                <form>
+                    <p>
+                        First Name: <input type="text" id="FirstName" value="" placeholder="Enter First Name"/>
+                    </p>
+                    <p>
+                        Last Name: <input type="text" id="LastName" value="" placeholder="Enter Last Name"/>
+                    </p>
+                    <p>
+                        Email: <input type="text" id="Email" value="" placeholder="Enter Email Address"/>
+                    </p>
+                    <p>
+                        Mailing Address: <input type="text" id="Address" value="" placeholder="123 Main streets, City, NY"style="width: 370px;"/>
+                    </p>
+                    <p>
+                        Zipcode: <input type="text" id="Zipcode" value="" placeholder="10653" style="width: 100px;"/>
+                    </p>
+                    <p>
+                        School Contact Email: <input type="text" id="SchoolEmail" value="" placeholder="almamatter@college.edu"/>
+                    </p>
+                    <p>
+                        Recent Employer Email: <input type="text" id="EmpEmail" value="" placeholder="Boss@job.com"/>
+                    </p>
+                    <p>
+                        Twitter Handle: <input type="text" id="Twitter" value="" placeholder="@twitter"/>
+                    </p>
+                    <p>
+                        SSN: <input type="text" id="SSN0" value="" placeholder="000" maxlength="3" style="width: 56px;"/> - <input type="text" id="SSN1" value="" placeholder="00" maxlength="2" style="width: 40px;"/> - <input type="text" id="SSN2" value="" placeholder="0000" maxlength="4" style="width: 73px;"/>
+                    </p>                                        
+                </form>
+                <button onclick="Submit();">Submit</button>
+            </div>
+        <div>        
+
+        <script type="text/javascript">
+
+            function Submit(){
+
+                console.log("DD");
+
+                var ssn = $("#SSN0")[0].value + $("#SSN1")[0].value + $("#SSN2")[0].value;
+                var Json = JSON.stringify({"FirstName": $("#FirstName")[0].value, "LastName": $("#LastName")[0].value, "Email": $("#Email")[0].value, "Address": $("#Address")[0].value, "Zipcode": $("#Zipcode")[0].value, "SchoolEmail": $("#SchoolEmail")[0].value, "EmpEmail": $("#EmpEmail")[0].value, "Twitter": $("#Twitter")[0].value, "SSN": ssn}); 
+                console.log(Json);
+
+
+            }
+
+
+
+
+        </script>
+
+
+
+<!--           
+            <script type="text/javascript">
+
+                function getCats(){
+
+                    /*https://api.flickr.com/services/rest/? //base url 
+                    method=flickr.photos.search // photo search 
+                    &api_key=8b88369d280b658b4cbd11b44771955f // api key 
+                    &tags=cats // search term 
+                    &format=json&nojsoncallback=1 // format */
+
+                    var urlFlickr = "https://api.flickr.com/services/rest/?";
+                    var flickrKey = "&api_key=4602629fbde21fd7d43b0409f3dd4bf1";
+                    var search = "method=flickr.photos.search";
+                    var tags = "&tags=cats" 
+                    var flickrFormat = "&format=json&nojsoncallback=1"
+
+                    var finalUrl = urlFlickr + search + flickrKey + tags + flickrFormat;
+
+                    //creating the object 
+                    var httpRequest = new XMLHttpRequest();
+
+                    //initializing it
+                    httpRequest.open("GET", finalUrl, true);
+                    httpRequest.onreadystatechange = function()
+                    {
+                        if (httpRequest.readyState == 4 && httpRequest.status == 200)
+                        {
+                            var data = JSON.parse(httpRequest.responseText);
+                            console.log(data);
+                            console.log(data.photos);
+                            console.log(data.photos.photo);
+                            console.log(data.photos.photo[0])
+                            var picInfo = data.photos.photo[0];
+                            var pictureUrl = "https://farm"+ picInfo.farm + ".staticflickr.com/" + picInfo.server + "/" + picInfo.id + "_" + picInfo.secret + ".jpg";
+                            array.push(pictureUrl);
+                            console.log(pictureUrl);
+                            var addPic = "<img src='"+pictureUrl+"' class='cat-img-style'>";
+                            console.log(addPic);
+
+                            document.getElementById("search-append-here").innerHTML = document.getElementById("search-append-here").innerHTML + addPic;
+
+                        }
+
+                    }
+
+                    "https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg"
+
+
+                    httpRequest.send();
+
+
+                }// end getCats()    
+                
+            </script>
+
+            <div class="row save-style">
+                <div>
+                    <input id="save-under-this" type="text" name="SavePics" placeholder=" Give me a name!"></input>
+                    <button onclick="saveCats()">Save</button>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                                    
+
+                function saveCats(){
+
+
+                    $.ajax({
+                        url: "https://api.parse.com/1/classes/find_a_cat",
+                        type: "POST",
+                        header:{
+                            "X-Parse-Application-Id": "fmvfKGs5uw7C3CWxmi7Mw0BWFsFgMbgCoadGZpz9",
+                            "X-Parse-REST-API-Key": "7bFHtJaUBNuGubOleLcSn7xlE5ko3fxqB3HBHU8V",
+                            "Content-Type": "application/json"
+                        },
+                        data: JSON.stringify({"cheat": "ds", "identifier": "2" }),
+                        success: function(){alert("it worked");},
+
+                    });
+
+
+                }
+
+            </script>
+
+            <div class="row load-style">
+                <div id="load-here">
+                    <input id="load-from-this" type="text" name="LoadCats" placeholder=" What was my name?"></input>
+                    <button id="button3" onclick="getSavedCats()">Load</button>
+                    <br>
+                </div>
+            </div>
+          
+            <script type="text/javascript">
+
+                function getSavedCats(){}
+
+            </script>
+
+            <hr>
+
+
+    <script type="text/javascript">
+    </script>
+-->
+
+	</body>
+
+
+</html>
